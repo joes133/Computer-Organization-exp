@@ -33,12 +33,13 @@
 
 ## 实验二：运算器组成实验
 
-**实验目标：**
+**目的：**
 - 掌握**运算器（ALU）基本工作原理**及溢出检测方法
 - 用 VHDL 实现 **AC 寄存器**和 **74LS181 的算术/逻辑运算**
 - 熟悉 Quartus II 编译、仿真流程，在 Cyclone V FPGA 板上演示
 
 ---
+<img width="830" height="609" alt="image" src="https://github.com/user-attachments/assets/429c0385-4166-4e32-8bd7-e078cda460ec" />
 
 **基于 74181 的 8 位 ALU 运算器。核心设计是三个操作数 A、B、S 共享一根 `Data_in[7..0]` 总线，通过三个寄存器分时锁存，再送入 ALU 组合逻辑运算。** 我按信号流走一遍。
 
@@ -97,12 +98,13 @@ ALU_8b 是纯组合逻辑，不靠时钟。三个寄存器的输出只要稳定�
 
 ## 实验三：存储器运算器综合实验
 
-**实验目标：**
+**目的：**
 - 掌握 **ROM / RAM / 计数器 / 锁存器**的创建（MegaWizard Plug-in Manager）
 - 会编写 **.mif 文件**将程序/数据加载进 ROM
 - 构建时钟驱动的自动运算数据通路
 
 ---
+<img width="831" height="703" alt="image" src="https://github.com/user-attachments/assets/e2c6db2f-fdfa-4198-b1a5-deb811d493d1" />
 
 **核心是用 lpm_latch 锁存器管理地址，让 ROM 和 RAM 共享同一个地址总线，ALU 自动从 ROM 取功能码和操作数 A，结果写入 RAM。** 我按信号流走一遍。
 
@@ -168,12 +170,13 @@ ALU 的三个**输入**同时到位：S 来自 ROM 高 4 位，A 来自 ROM 中 
 
 ## 实验四：控制器综合实验
 
-**实验目标：**
+**目的：**
 - 理解总线系统原理，掌握**硬布线控制器**设计（decoder + 控制逻辑）
 - 用 VHDL 实现 **PC 寄存器（8 位**，支持 RESET/INCR_PC/LOAD_PC）
 - 实现 **32 位指令**的译码器；为整机实验做准备
 
 ---
+<img width="831" height="987" alt="image" src="https://github.com/user-attachments/assets/0f50bce6-342e-4b8f-9895-af7efda9967f" />
 
 **单周期冯·诺依曼计算机的完整数据通路，我以一条 ADD 指令为例，从取指到写回走一遍。**
 
@@ -236,6 +239,8 @@ ALU 的 A 端来自 AC_A 累加器的 `Data_out[7..0]`（上一条指令留下�
 > AC_S 是另一个边沿触发寄存器，存的不是累加器数据值，而是功能码——decoder 输出的 `S[3..0]` 这 4 位 ALU 控制字。decoder 输出 `S[3..0]` 之后，并不是直接连到 ALU 的 `S[3..0]` 端口，而是先经过 AC_S 寄存器锁存一拍，再从 AC_S 的 `Data_out` 送到 ALU。这样做的目的是让 `S[3..0]` 和 AC_A 的数据在时序上对齐——两者都在同一个上升沿被锁存，下一拍同时稳定地送进 ALU，避免 ALU 两个输入一个是新的一个是旧的，产生毛刺。
 
 **谈谈你对"一个时钟周期"的理解？**
+<img width="831" height="452" alt="image" src="https://github.com/user-attachments/assets/ce818aaf-b3f2-49d1-b23e-cd5b83d5d612" />
+
 > 一个时钟周期 = 相邻两个上升沿之间的时间，具体包含：一段高电平（上升沿到下降沿）加上一段低电平（下降沿到下一个上升沿）。
 > 
 > 组合逻辑的所有传播——取指、译码、访存、ALU 运算——发生在上升沿 N 之后、上升沿 N+1 之前这段时间窗口里，信号要在这段时间内完全稳定下来。
@@ -292,6 +297,7 @@ ALU 的 A 端来自 AC_A 累加器的 `Data_out[7..0]`（上一条指令留下�
 **仿真验证：** 使用了 22 条指令的测试程序，覆盖了全部 18 条指令类型，波形结果显示各指令执行正确。工程在 Quartus II 下编译通过，目标器件为 Cyclone V 5CSEMA5F31C6，已做好七段数码管显示接口，可以显示 PC 值、寄存器值和 ALU 运算结果。
 
 ---
+<img width="830" height="920" alt="image" src="https://github.com/user-attachments/assets/6e05f185-b381-470a-9c0d-59089578f70d" />
 
 **以 `addi $1, $0, 5`（把 5 加载进 R1）为例走一遍：**
 
