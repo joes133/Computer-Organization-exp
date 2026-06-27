@@ -1,9 +1,11 @@
 # 计算机组成原理实验 —— 基于 FPGA 的 CPU 逐级设计
 
 > 计算机组成原理课程实验
+> 
 > 平台：Quartus II 13.1 + Cyclone V (5CSEMA5F31C6) / DE1-SoC 开发板
+> 
 > 语言：VHDL + 原理图 (BDF)
-
+> 
 ---
 
 ## 项目简介
@@ -21,6 +23,7 @@
 ---
 
 ## 实验一：基础逻辑门（LAB0001）
+<img width="629" height="128" alt="a428609f38eb7c4c7798ae021b03853c" src="https://github.com/user-attachments/assets/3ac38ee0-81cc-49fe-8ad1-fd7f1bde8aca" />
 
 ### 目的
 
@@ -51,6 +54,7 @@
 ---
 
 ## 实验二：8 位 ALU（LAB0002）
+<img width="835" height="319" alt="bdb609a8d5a3c9708873b1fd68f65737" src="https://github.com/user-attachments/assets/0ecc231e-bdc0-460f-9a22-b6ec13acefb0" />
 
 ### 目的
 
@@ -95,6 +99,7 @@
 ---
 
 ## 实验三：ALU + 存储器（LAB0003）
+<img width="813" height="334" alt="7a773c7e336557c87cb8aff333307d92" src="https://github.com/user-attachments/assets/2bd1ae91-c8f4-4086-b2ee-6072f6544b65" />
 
 ### 目的
 
@@ -121,6 +126,7 @@
 ---
 
 ## 实验四：8 位完整 CPU（LAB0004）
+<img width="1042" height="426" alt="image" src="https://github.com/user-attachments/assets/9b95a644-bf96-4934-bb78-6d5ccb354801" />
 
 ### 目的
 
@@ -177,6 +183,8 @@ AC → ALU A端           ALU → AC (写回)
 ---
 
 ## 实验五：16 位单周期 CPU（LAB0005 · 课程设计）
+<img width="796" height="535" alt="d3fee7d06030d9077c091de4582eac99" src="https://github.com/user-attachments/assets/2469f697-6407-4301-94f4-f07fb8354ee5" />
+
 
 ### 目的
 
