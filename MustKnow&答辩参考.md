@@ -10,6 +10,8 @@
 
 ## 实验一：实验环境 - 简单电路
 
+<img width="416" height="79" alt="image" src="https://github.com/user-attachments/assets/7b02dc76-e29a-453a-9ea2-b49df2c8bf5f" />
+
 基础的**两输入或门**，没啥好讲的，主要是熟悉一下实验流程。
 
 大白话总结一下参考书里的十几页操作说明：
