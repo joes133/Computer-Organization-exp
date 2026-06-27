@@ -1,0 +1,55 @@
+# ===========================================
+# Quartus II / Intel FPGA build artifacts
+# ===========================================
+
+# Quartus database & incremental build caches
+db/
+incremental_db/
+greybox_tmp/
+hc_output/
+
+# Compilation output (sof/pof/rpt/etc.)
+output_files/
+*.sof
+*.pof
+*.qar
+*.qarlog
+*.rpt
+*.summary
+*.smsg
+*.jdi
+*.pin
+*.done
+*.sld
+*.cdf
+*.sip
+*.spd
+
+# Quartus workspace settings
+*.qws
+.qws/
+
+# ===========================================
+# ModelSim / Simulation artifacts
+# ===========================================
+work/
+simulation/
+transcript
+*.wlf
+vsim.wlf
+*.vstf
+
+# ===========================================
+# OS / Editor junk
+# ===========================================
+__pycache__/
+*.pyc
+*.bak
+*.tmp
+Thumbs.db
+.DS_Store
+
+# ===========================================
+# Temp scripts (not part of design)
+# ===========================================
+read_docx*.py

@@ -1,0 +1,28 @@
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+entity AC_B is
+port (
+		LOAD_B : IN STD_LOGIC;
+		clk : IN STD_LOGIC;
+		Data_in : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+		B : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
+);
+end AC_B;
+
+ARCHITECTURE accu OF AC_B IS
+
+BEGIN
+
+  PROCESS(clk,LOAD_B,data_in)
+   BEGIN
+	IF clk'event AND clk = '1' THEN 
+		IF LOAD_B = '1' THEN
+		B <= Data_in;
+		END IF;
+	END IF;
+	
+  END PROCESS;
+
+END accu;

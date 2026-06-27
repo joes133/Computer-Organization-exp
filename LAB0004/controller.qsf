@@ -1,0 +1,138 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 1991-2013 Altera Corporation
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, Altera MegaCore Function License 
+# Agreement, or other applicable license agreement, including, 
+# without limitation, that your use is for the sole purpose of 
+# programming logic devices manufactured by Altera and sold by 
+# Altera or its authorized distributors.  Please refer to the 
+# applicable agreement for further details.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus II 64-Bit
+# Version 13.1.0 Build 162 10/23/2013 SJ Full Version
+# Date created = 21:23:53  January 04, 2020
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		controller_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus II software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY "Cyclone V"
+set_global_assignment -name DEVICE 5CSEMA5F31C6
+set_global_assignment -name TOP_LEVEL_ENTITY controller
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 13.1
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "21:23:53  JANUARY 04, 2020"
+set_global_assignment -name LAST_QUARTUS_VERSION 13.1
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 256
+set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (VHDL)"
+set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VHDL -section_id eda_simulation
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "2.5 V"
+set_location_assignment PIN_AE12 -to B_T
+set_location_assignment PIN_AD10 -to reset
+set_location_assignment PIN_AD27 -to ALUOUT2[0]
+set_location_assignment PIN_AF30 -to ALUOUT2[1]
+set_location_assignment PIN_AF29 -to ALUOUT2[2]
+set_location_assignment PIN_AG30 -to ALUOUT2[3]
+set_location_assignment PIN_AH30 -to ALUOUT2[4]
+set_location_assignment PIN_AH29 -to ALUOUT2[5]
+set_location_assignment PIN_AJ29 -to ALUOUT2[6]
+set_location_assignment PIN_AH28 -to ALUOUT1[0]
+set_location_assignment PIN_AG28 -to ALUOUT1[1]
+set_location_assignment PIN_AF28 -to ALUOUT1[2]
+set_location_assignment PIN_AG27 -to ALUOUT1[3]
+set_location_assignment PIN_AE28 -to ALUOUT1[4]
+set_location_assignment PIN_AE27 -to ALUOUT1[5]
+set_location_assignment PIN_AE26 -to ALUOUT1[6]
+set_location_assignment PIN_AA25 -to MDROUT2[0]
+set_location_assignment PIN_AA26 -to MDROUT2[1]
+set_location_assignment PIN_AB26 -to MDROUT2[2]
+set_location_assignment PIN_AB27 -to MDROUT2[3]
+set_location_assignment PIN_Y27 -to MDROUT2[4]
+set_location_assignment PIN_AA28 -to MDROUT2[5]
+set_location_assignment PIN_V25 -to MDROUT2[6]
+set_location_assignment PIN_W25 -to MDROUT1[0]
+set_location_assignment PIN_V23 -to MDROUT1[1]
+set_location_assignment PIN_W24 -to MDROUT1[2]
+set_location_assignment PIN_W22 -to MDROUT1[3]
+set_location_assignment PIN_Y24 -to MDROUT1[4]
+set_location_assignment PIN_Y23 -to MDROUT1[5]
+set_location_assignment PIN_AA24 -to MDROUT1[6]
+set_location_assignment PIN_AB22 -to ACOUT2[0]
+set_location_assignment PIN_AB25 -to ACOUT2[1]
+set_location_assignment PIN_AB28 -to ACOUT2[2]
+set_location_assignment PIN_AC25 -to ACOUT2[3]
+set_location_assignment PIN_AD25 -to ACOUT2[4]
+set_location_assignment PIN_AC27 -to ACOUT2[5]
+set_location_assignment PIN_AD26 -to ACOUT2[6]
+set_location_assignment PIN_AC30 -to ACOUT1[0]
+set_location_assignment PIN_AC29 -to ACOUT1[1]
+set_location_assignment PIN_AD30 -to ACOUT1[2]
+set_location_assignment PIN_AC28 -to ACOUT1[3]
+set_location_assignment PIN_AD29 -to ACOUT1[4]
+set_location_assignment PIN_AE29 -to ACOUT1[5]
+set_location_assignment PIN_AB23 -to ACOUT1[6]
+set_global_assignment -name USE_CONFIGURATION_DEVICE ON
+set_global_assignment -name CRC_ERROR_OPEN_DRAIN ON
+set_global_assignment -name RESERVE_ALL_UNUSED_PINS_WEAK_PULLUP "AS INPUT TRI-STATED"
+set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -rise
+set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -fall
+set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -rise
+set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -fall
+set_global_assignment -name ACTIVE_SERIAL_CLOCK FREQ_100MHZ
+set_location_assignment PIN_AA14 -to clock
+set_global_assignment -name ENABLE_CONFIGURATION_PINS OFF
+set_global_assignment -name ENABLE_NCE_PIN OFF
+set_global_assignment -name ENABLE_BOOT_SEL_PIN OFF
+set_location_assignment PIN_V16 -to S[0]
+set_location_assignment PIN_W16 -to S[1]
+set_location_assignment PIN_V17 -to S[2]
+set_location_assignment PIN_V18 -to S[3]
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name BDF_FILE controller.bdf
+set_global_assignment -name VHDL_FILE lpm_counter0.vhd
+set_global_assignment -name SOURCE_FILE ROM.cmp
+set_global_assignment -name SOURCE_FILE RAM1.cmp
+set_global_assignment -name SOURCE_FILE lpm_mux0.cmp
+set_global_assignment -name QIP_FILE ROM.qip
+set_global_assignment -name QIP_FILE RAM1.qip
+set_global_assignment -name VHDL_FILE seg7_16b.vhd
+set_global_assignment -name VHDL_FILE ROM.vhd
+set_global_assignment -name VHDL_FILE RAM1.vhd
+set_global_assignment -name VHDL_FILE PC.vhd
+set_global_assignment -name VHDL_FILE lpm_latch_1.vhd
+set_global_assignment -name VHDL_FILE lpm_latch_0.vhd
+set_global_assignment -name VHDL_FILE IR.vhd
+set_global_assignment -name VHDL_FILE controller.vhd
+set_global_assignment -name VHDL_FILE ALU_8b.vhd
+set_global_assignment -name VHDL_FILE AC.vhd
+set_global_assignment -name QIP_FILE lpm_counter0.qip
+set_global_assignment -name QIP_FILE lpm_mux0.qip
+set_global_assignment -name VHDL_FILE decoder.vhd
+set_global_assignment -name MIF_FILE RAM.mif

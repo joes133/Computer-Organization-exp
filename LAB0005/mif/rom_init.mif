@@ -1,0 +1,98 @@
+-- rom_init.mif
+-- ROM initialization file: 256 x 16-bit instruction memory
+-- Encoding: [15:12]=opcode [11:10]=rs [9:8]=rt [7:6]=rd [5:3]=func [2:0]=func/imm
+--
+-- Test program:
+--   ; Init registers
+--   addr 0:  addi $1, $0, 5      ; $1 = 5       opcode=0101 rs=00 rt=01 imm=00000101
+--   addr 1:  addi $2, $0, 3      ; $2 = 3       opcode=0101 rs=00 rt=10 imm=00000011
+--   addr 2:  add  $3, $1, $2     ; $3 = 8       opcode=0000 rs=01 rt=10 rd=11 func=010
+--   addr 3:  sub  $3, $1, $2     ; $3 = 2       opcode=0000 rs=01 rt=10 rd=11 func=011
+--   addr 4:  and  $3, $1, $2     ; $3 = 1       opcode=0000 rs=01 rt=10 rd=11 func=001
+--   addr 5:  or   $3, $1, $2     ; $3 = 7       opcode=0000 rs=01 rt=10 rd=11 func=000
+--   addr 6:  sw   $1, 0($0)      ; MEM[0] = 5  opcode=0111 rs=00 rt=01 imm=00000000
+--   addr 7:  sw   $2, 1($0)      ; MEM[1] = 3  opcode=0111 rs=00 rt=10 imm=00000001
+--   addr 8:  lw   $3, 0($0)      ; $3 = MEM[0]=5 opcode=0110 rs=00 rt=11 imm=00000000
+--   addr 9:  lui  $1, 0xFF       ; $1 = 0xFF00  opcode=0010 rs=00 rt=01 imm=11111111
+--   addr 10: ori  $2, $0, 0xAB   ; $2 = 0x00AB  opcode=0011 rs=00 rt=10 imm=10101011
+--   addr 11: addi $3, $0, 0      ; $3 = 0       opcode=0101 rs=00 rt=11 imm=00000000
+--   addr 12: slt  $3, $2, $1     ; $3=1 ($2<$1=0x00AB<0xFF00) opcode=0000 rs=10 rt=01 rd=11 func=111
+--   addr 13: beq  $3, $0, +2     ; if $3==$0 skip (not taken: $3=1) opcode=1000 rs=11 rt=00 imm=00000010
+--   addr 14: addi $1, $0, 10     ; $1 = 10     (reachable if not taken)
+--   addr 15: bne  $3, $0, +1     ; if $3!=$0 jump +1 opcode=1001 rs=11 rt=00 imm=00000001
+--   addr 16: addi $1, $0, 99     ; $1 = 99     (skipped by bne)
+--   addr 17: jump 20             ; PC = (PC&0xF000)|20 opcode=1011 target=000000010100
+--   addr 18: addi $1, $0, 0      ; (skipped)
+--   addr 19: addi $2, $0, 0      ; (skipped)
+--   addr 20: DISP $1             ; display $1  opcode=0001 rs=01 ...
+--   addr 21: DISP $2             ; display $2
+--   addr 22: halt                ; stop       opcode=1100 ...
+--
+-- Encoding details:
+--   addi $rt, $rs, imm8:  opcode=0101, rs[11:10], rt[9:8], imm8[7:0]
+--   R-type: opcode=0000, rs[11:10], rt[9:8], rd[7:6], func[5:3], 000[2:0]
+--   sw $rt, imm($rs): opcode=0111, rs[11:10], rt[9:8], imm8[7:0]
+--   lw $rt, imm($rs): opcode=0110, rs[11:10], rt[9:8], imm8[7:0]
+--   lui $rt, imm8:    opcode=0010, rs=00,     rt[9:8], imm8[7:0]
+--   ori $rt, $rs, imm8: opcode=0011, rs[11:10], rt[9:8], imm8[7:0]
+--   beq $rs, $rt, imm8: opcode=1000, rs[11:10], rt[9:8], imm8[7:0]
+--   bne $rs, $rt, imm8: opcode=1001, rs[11:10], rt[9:8], imm8[7:0]
+--   jump target12:      opcode=1011, target[11:0]
+--   DISP $rs:           opcode=0001, rs[11:10], rt=00, rest=0
+--   halt:               opcode=1100, rest=0
+
+WIDTH=16;
+DEPTH=256;
+ADDRESS_RADIX=HEX;
+DATA_RADIX=BIN;
+
+CONTENT BEGIN
+-- addr 0: addi $1, $0, 5   -> 0101_00_01_00000101
+   00  : 0101000100000101;
+-- addr 1: addi $2, $0, 3   -> 0101_00_10_00000011
+   01  : 0101001000000011;
+-- addr 2: add $3,$1,$2     -> 0000_01_10_11_010_000
+   02  : 0000011011010000;
+-- addr 3: sub $3,$1,$2     -> 0000_01_10_11_011_000
+   03  : 0000011011011000;
+-- addr 4: and $3,$1,$2     -> 0000_01_10_11_001_000
+   04  : 0000011011001000;
+-- addr 5: or  $3,$1,$2     -> 0000_01_10_11_000_000
+   05  : 0000011011000000;
+-- addr 6: sw $1, 0($0)     -> 0111_00_01_00000000
+   06  : 0111000100000000;
+-- addr 7: sw $2, 1($0)     -> 0111_00_10_00000001
+   07  : 0111001000000001;
+-- addr 8: lw $3, 0($0)     -> 0110_00_11_00000000
+   08  : 0110001100000000;
+-- addr 9: lui $1, 0xFF     -> 0010_00_01_11111111
+   09  : 0010000111111111;
+-- addr A: ori $2, $0, 0xAB -> 0011_00_10_10101011
+   0A  : 0011001010101011;
+-- addr B: addi $3, $0, 0   -> 0101_00_11_00000000
+   0B  : 0101001100000000;
+-- addr C: slt $3,$2,$1     -> 0000_10_01_11_111_000
+   0C  : 0000100111111000;
+-- addr D: beq $3,$0, 2     -> 1000_11_00_00000010
+   0D  : 1000110000000010;
+-- addr E: addi $1, $0, 10  -> 0101_00_01_00001010
+   0E  : 0101000100001010;
+-- addr F: bne $3,$0, 1     -> 1001_11_00_00000001
+   0F  : 1001110000000001;
+-- addr 10: addi $1,$0,99   -> 0101_00_01_01100011
+   10  : 0101000101100011;
+-- addr 11: jump 20 (0x14)  -> 1011_000000010100
+   11  : 1011000000010100;
+-- addr 12: (skipped) nop-like: addi $0,$0,0
+   12  : 0101000000000000;
+-- addr 13: (skipped) addi $0,$0,0
+   13  : 0101000000000000;
+-- addr 14 (20): DISP $1    -> 0001_01_00_00000000
+   14  : 0001010000000000;
+-- addr 15 (21): DISP $2    -> 0001_10_00_00000000
+   15  : 0001100000000000;
+-- addr 16 (22): halt       -> 1100_000000000000
+   16  : 1100000000000000;
+-- Remaining: fill with halt
+   [17..FF] : 1100000000000000;
+END;

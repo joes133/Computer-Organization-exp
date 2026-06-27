@@ -1,0 +1,14 @@
+-- ram_init.mif
+-- Data RAM initialization: 256 x 16-bit
+-- Pre-load some values for lw testing
+
+WIDTH=16;
+DEPTH=256;
+ADDRESS_RADIX=HEX;
+DATA_RADIX=HEX;
+
+CONTENT BEGIN
+   00  : 0000;
+   01  : 0000;
+   [02..FF] : 0000;
+END;

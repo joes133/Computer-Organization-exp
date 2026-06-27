@@ -1,0 +1,53 @@
+# LAB0005.qsf - Quartus Settings File
+# Device: Cyclone V 5CSEMA5F31C6
+
+set_global_assignment -name FAMILY "Cyclone V"
+set_global_assignment -name DEVICE 5CSEMA5F31C6
+set_global_assignment -name TOP_LEVEL_ENTITY cpu_top
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "2026"
+
+# Source files
+
+# MIF files
+
+# Clock: DE1-SoC CLOCK_50 = PIN_AF14
+set_location_assignment PIN_AF14 -to clk
+
+# Reset: KEY[0] = PIN_AA14
+set_location_assignment PIN_AA14 -to rst
+
+# Display outputs: HEX0~HEX5
+# NOTE: Pin assignments below are PLACEHOLDER - replace with your board's actual pins
+# DE1-SoC Cyclone V pinout may differ from other boards.
+# Check your board's User Manual / Pin Assignment file for correct values.
+# For now commented out - uncomment after verifying with your board:
+#
+# set_location_assignment PIN_XXXXX -to HEX0[0]
+# ... (42 pins total: 6 digits × 7 segments)
+
+
+set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "2.5 V"
+
+set_global_assignment -name LAST_QUARTUS_VERSION 13.1
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (VHDL)"
+set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VHDL -section_id eda_simulation
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name BDF_FILE cpu_top.bdf
+set_global_assignment -name VHDL_FILE src/pc_reg.vhd
+set_global_assignment -name VHDL_FILE src/regfile.vhd
+set_global_assignment -name VHDL_FILE src/alu_16b.vhd
+set_global_assignment -name VHDL_FILE src/extender.vhd
+set_global_assignment -name VHDL_FILE src/controller.vhd
+set_global_assignment -name VHDL_FILE src/rom_256x16.vhd
+set_global_assignment -name VHDL_FILE src/ram_256x16.vhd
+set_global_assignment -name VHDL_FILE src/mux2_16.vhd
+set_global_assignment -name VHDL_FILE src/mux2_2.vhd
+set_global_assignment -name VHDL_FILE src/wb_mux.vhd
+set_global_assignment -name VHDL_FILE src/pc_next.vhd
+set_global_assignment -name VHDL_FILE src/seg7_16b.vhd
+set_global_assignment -name VHDL_FILE src/cpu_top.vhd
+set_global_assignment -name MIF_FILE mif/rom_init.mif
+set_global_assignment -name MIF_FILE mif/ram_init.mif
