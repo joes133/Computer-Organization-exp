@@ -273,7 +273,29 @@ J型: [15:12]opcode=1011 | [11:0]target(12位目标地址)
 | HEX4-HEX5 | ALU 运算结果低 8 位 |
 
 ---
+### 注意事项：
 
+实验1-3实际操作中没有遇到太多问题，如有报错建议查看是否成功初始化，或者qsf文件冲突，rom/ram配置，如无法解决请自行查看手册重新配置。
+实验4打开工程文件可能会显示lab6，使用了新的文件没有修改实际命名文件，不影响编译&仿真。
+实验5的bdf图只是示意，实际连接是错误的，在运行时务必remove bdf保留顶层vhd即可。另外，在上板时，实验5的引脚分配可能会出现问题，建议在pin planner按需复用前面实验的配置。
+特别说明：正常情况下软件层面没有问题，在仿真阶段 实验5需要注意 如果一直nodata且窗口无任何信号 建议先关掉整个 ModelSim，然后这样重新来：打开文件管理器，进入 D:\altera\PCO\LAB0005（文件存储的实际位置，路径无中文），enter->cmd->vsim->在 ModelSim 底部的 Transcript 窗口里，依次输入以下每条命令:
+vcom src/pc_reg.vhd
+vcom src/regfile.vhd
+vcom src/alu_16b.vhd
+vcom src/extender.vhd
+vcom src/controller.vhd
+vcom src/rom_256x16.vhd
+vcom src/ram_256x16.vhd
+vcom src/seg7_16b.vhd
+vcom src/cpu_top.vhd
+0 error 后再输入：vsim cpu_top
+这时候 Library 里就会出 work 和 cpu_top 了。然后加入以下波形：
+<img width="545" height="541" alt="image" src="https://github.com/user-attachments/assets/8f77b316-c1ec-49a8-981c-416f4a12910a" />
+
+按需拖动光标到相应位置截图：
+<img width="522" height="463" alt="image" src="https://github.com/user-attachments/assets/083d3498-d12f-4619-ae83-c9317c50265f" />
+
+---
 ## 目录结构
 
 ```
