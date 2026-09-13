@@ -33,8 +33,8 @@
 
 实现一个 2 输入或门，用两种方式描述：
 
-- **VHDL 代码**（`or2in.vhd`）：`led0 <= sw1 OR sw0`
-- **原理图**（`or2in.bdf`）：图形化连接
+**VHDL 代码**（`or2in.vhd`）：`led0 <= sw1 OR sw0`
+**原理图**（`or2in.bdf`）：图形化连接
 
 ### 模块说明
 
