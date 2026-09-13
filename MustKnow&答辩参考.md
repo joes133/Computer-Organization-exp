@@ -34,9 +34,9 @@
 ## 实验二：运算器组成实验
 
 **目的：**
-- 掌握**运算器（ALU）基本工作原理**及溢出检测方法
-- 用 VHDL 实现 **AC 寄存器**和 **74LS181 的算术/逻辑运算**
-- 熟悉 Quartus II 编译、仿真流程，在 Cyclone V FPGA 板上演示
+掌握**运算器（ALU）基本工作原理**及溢出检测方法
+用 VHDL 实现 **AC 寄存器**和 **74LS181 的算术/逻辑运算**
+熟悉 Quartus II 编译、仿真流程，在 Cyclone V FPGA 板上演示
 
 ---
 <img width="830" height="609" alt="image" src="https://github.com/user-attachments/assets/429c0385-4166-4e32-8bd7-e078cda460ec" />
@@ -99,9 +99,9 @@ ALU_8b 是纯组合逻辑，不靠时钟。三个寄存器的输出只要稳定�
 ## 实验三：存储器运算器综合实验
 
 **目的：**
-- 掌握 **ROM / RAM / 计数器 / 锁存器**的创建（MegaWizard Plug-in Manager）
-- 会编写 **.mif 文件**将程序/数据加载进 ROM
-- 构建时钟驱动的自动运算数据通路
+掌握 **ROM / RAM / 计数器 / 锁存器**的创建（MegaWizard Plug-in Manager）
+会编写 **.mif 文件**将程序/数据加载进 ROM
+构建时钟驱动的自动运算数据通路
 
 ---
 <img width="831" height="703" alt="image" src="https://github.com/user-attachments/assets/e2c6db2f-fdfa-4198-b1a5-deb811d493d1" />
@@ -171,9 +171,9 @@ ALU 的三个**输入**同时到位：S 来自 ROM 高 4 位，A 来自 ROM 中 
 ## 实验四：控制器综合实验
 
 **目的：**
-- 理解总线系统原理，掌握**硬布线控制器**设计（decoder + 控制逻辑）
-- 用 VHDL 实现 **PC 寄存器（8 位**，支持 RESET/INCR_PC/LOAD_PC）
-- 实现 **32 位指令**的译码器；为整机实验做准备
+理解总线系统原理，掌握**硬布线控制器**设计（decoder + 控制逻辑）
+用 VHDL 实现 **PC 寄存器（8 位**，支持 RESET/INCR_PC/LOAD_PC）
+实现 **32 位指令**的译码器；为整机实验做准备
 
 ---
 <img width="831" height="987" alt="image" src="https://github.com/user-attachments/assets/0f50bce6-342e-4b8f-9895-af7efda9967f" />
@@ -414,7 +414,7 @@ addi 的 Branch 和 Jump 都是 0，所以 `next_pc = pc_plus1`，顺序执行�
 > 用 MIF 文件（Memory Initialization File）初始化。ROM 用 `rom_init.mif` 存放测试程序代码，RAM 用 `ram_init.mif` 存放初始数据。MIF 文件指定了每个地址对应的 16 位数据值，在 altsyncram 的 `init_file` 属性中引用，Quartus 编译时自动加载。
 
 **Q10：你在设计过程中遇到了什么问题？**
-> - lw 指令最初漏掉了 `Mem2Reg` 信号，导致写回的是 ALU 结果而不是 RAM 数据
-> - beq 和 bne 的 `BrNeg` 信号含义一开始理解反了，分支方向搞错
-> - slt 写回的不是 0/1 而是减法差值，后来加了 Slt 信号做特殊处理
-> - jump 的 target 字段一开始只取了 8 位，跳转范围不够，后来改成 12 位
+> lw 指令最初漏掉了 `Mem2Reg` 信号，导致写回的是 ALU 结果而不是 RAM 数据
+> beq 和 bne 的 `BrNeg` 信号含义一开始理解反了，分支方向搞错
+> slt 写回的不是 0/1 而是减法差值，后来加了 Slt 信号做特殊处理
+> jump 的 target 字段一开始只取了 8 位，跳转范围不够，后来改成 12 位
